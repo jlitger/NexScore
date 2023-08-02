@@ -1,0 +1,50 @@
+version: '3'
+services:
+  # Database container
+  database:
+    image: postgres
+    ports:
+      - '5432:5432'
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=nexscore
+  
+  # Backend container
+  nexscore-backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./backend:/root/backend
+      - ./common:/root/common
+      - ./package.json:/root/package.json
+      - ./yarn.lock:/root/yarn.lock
+      - /root/backend/node_modules
+      - /root/common/node_modules
+    depends_on:
+      - database
+    working_dir: /root/backend
+    command: yarn start:dev
+
+  # Frontend contianer
+  nexscore-frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - '3001:3000'
+    volumes:
+      - ./frontend:/root/frontend
+      - ./common:/root/common
+      - /root/frontend/node_modules
+      - /root/common/node_modules
+      - ./package.json:/root/package.json
+      - ./yarn.lock:/root/yarn.lock
+    depends_on:
+      - database
+      - nexscore-backend
+    working_dir: /root/frontend
+    command: yarn dev

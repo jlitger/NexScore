@@ -1,0 +1,9 @@
+@import 'variables';
+
+:export {
+  paddingVerySmall: $padding-very-small;
+  paddingSmall: $padding-large;
+  paddingMedium: $padding-large;
+  paddingLarge: $padding-large;
+  paddingVeryLarge: $padding-very-large;
+}

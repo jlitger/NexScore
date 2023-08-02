@@ -1,0 +1,10 @@
+{
+  "name": "@nexscore/core",
+  "version": "0.0.0",
+  "description": "League of Legends nexus last hit counter",
+  "main": "index.js",
+  "author": "jlitger",
+  "license": "MIT",
+  "workspaces": ["common", "backend", "frontend"],
+  "private": "true"
+}

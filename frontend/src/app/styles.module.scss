@@ -1,0 +1,37 @@
+@use 'variables' as v;
+
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  padding: v.$padding-large;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.logo {
+  padding: v.$padding-medium;
+}
+
+.navList {
+  display: flex;
+  flex-direction: row;
+  gap: v.$padding-medium;
+
+  li {
+    display: inline;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: var(--color-main);
+  cursor: pointer;
+  transition: color 0.15s linear;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
