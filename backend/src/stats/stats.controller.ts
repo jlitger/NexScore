@@ -21,6 +21,25 @@ export class StatsController {
     const matches = await this.scoresService.findAll();
     const highScore = await this.scoresService.findHighScore();
 
+    if (!highScore) {
+      return {
+        totalMatches: 0,
+        highestScore: {
+          nexScore: 0,
+          player: {
+            id: '0',
+            name: 'no player',
+            profileIconId: 0,
+            puuid: '0',
+          },
+          totalScore: 0,
+          trackedMatches: 0,
+        },
+        matchesWithNoScore: 0,
+        matchesWithScore: 0,
+      };
+    }
+
     let player = await this.playersService.findOneById(highScore.score_id);
 
     if (!player) {
