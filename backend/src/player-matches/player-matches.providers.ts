@@ -9,3 +9,13 @@ export const playerMatchesProviders = [
     inject: ['DATA_SOURCE'],
   },
 ];
+
+const mockPlayerMatches = [];
+export const mockPlayerMatchesProviders = [
+  {
+    provide: 'PLAYER_MATCHES_REPOSITORY',
+    useValue: {
+      save: (matches: any[]) => mockPlayerMatches.push(matches),
+    },
+  },
+];
