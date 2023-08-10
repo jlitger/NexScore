@@ -2,11 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
   private readonly USERS: User[] = [
-    { id: '0', email: 'mail@ploinky.de', passwordHash: 'abc' },
+    { id: '0', email: 'mail@ploinky.de', passwordHash: bcrypt.hashSync('abc', 10) },
   ];
 
   create(createUserDto: CreateUserDto) {
