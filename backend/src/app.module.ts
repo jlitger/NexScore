@@ -16,7 +16,7 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     PlayersModule,
     DatabaseModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({ isGlobal: true }),
     ScheduleModule.forRoot(),
     MatchesModule,
     StatsModule,
